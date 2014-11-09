@@ -1,0 +1,35 @@
+<div class="jumbotron">
+  <center>
+    <h2>Stream your live content!</h2>
+  </center>
+  <center>
+    <p class="lead">Share your lectures, concert, or games with as many as you'd like.</p>
+  </center>
+  <% if ( typeof req.session.user !== 'undefined' ) { %>
+  <form class="form-inline text-center" role="form" action="/channel/create" method="post">
+    <div class="form-group">
+      <input type="submit" name="broadcaster" class="btn btn-success btn-lg btn-sucess" style="padding:10px; margin: 10px;" value="Broadcast Now!"/>
+      <input type="text" class="form-control input-small" id="name" name="name" placeholder="Enter channel name" /><br>
+    </div>
+      <% } else { %>
+      <center>
+        <a id ="broadcaster" class="btn btn-success btn-lg btn-sucess" style="text-align:center; padding:10px; margin: 10px;" href="#"> Broadcast Now!</a>
+      </center>
+      <% } %>
+  </form>
+
+</div>
+
+<div class="jumbotron">
+  <center>
+    <h2>Browse All Live Channels</h2>
+  </center>
+  <center>
+    <p class="lead">Check out awesome lectures, exciting concerts, or righteous games <br> with many other people! You don't even need to register!</p>
+  </center>
+  <form class="form-inline text-center" role="form">
+    <a class="btn btn-primary btn-lg btn-sucess" href="/channel">View Now!</a>
+  </form>
+</div>
+
+

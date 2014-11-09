@@ -1,0 +1,50 @@
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <h2><%= (channel.name || "Not Found") %><small> currently live</small></h2>
+
+        <% if (typeof channel !== 'undefined' && channel.id) { %><span id="currentChannelId" style="display:none;"><%= channel.id %></span><% } %>
+
+        <div onclick="OpenNewTab(addVideo)" id="localVideoContainer" style="width:640px;height:480px;background-color:#ccc;margin-bottom:10px;overflow:hidden;">
+          <video id="localVideo"  width="640" height="480" controls autoplay ></video>
+        </div>
+        <div class="row h4">
+          <div class="col-lg-1">
+            <span class="glyphicon glyphicon-eye-open"></span> <em id="viewers">33</em>
+          </div>
+          <div class="col-lg-1">
+            <span class="glyphicon glyphicon-user"></span> <em id="peers">4</em>
+          </div>
+
+
+        </div>
+        <!--
+          <h4>Description</h4>
+          <p>For those who can't come to lecture</p>
+          -->
+      </div>
+
+
+      <div class="col-lg-3">
+        <h2>&nbsp;</h2>
+        <div class="btn-group-lg">
+          <!--
+            <button type="button" class="btn btn-primary" onclick="doConnect();" id="connect"><span class="glyphicon glyphicon-refresh"></span> Connect</button>
+            -->
+					<!-- Check if the user is a broadcaster -->
+          <% if (typeof channel !== 'undefined' && typeof req.session.user !== 'undefined' && channel.owner.id === req.session.user.id) { %>
+          <div class="row h4" >Video source: <select id="videosrc"></select><br></div>
+          <button type="button" class="btn btn-danger" id="addVideo"><span class="glyphicon glyphicon-facetime-video"></span> Start Video</button>
+          <% } %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+   $( "#localVideoContainer" ).click(function() {
+      $( "#addVideo" ).click();
+    });
+  
+</script>
